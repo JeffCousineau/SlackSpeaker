@@ -3,8 +3,8 @@ import time
 import os
 import sys
 
-token = 'xoxp-17182186914-20853726230-330371001942-3445e47cc4616d8a459772793f868438'
-#token = 'xoxb-231539362580-UIQ3OqcgBcEg7zRyH5ZYqASS'
+token = ''
+#token = ''
 
 # dashboard       : C9Q9L695K
 # decompte        : C9YJQEHGW
