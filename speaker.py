@@ -3,9 +3,22 @@ import time
 import os
 import sys
 
-token = 'token' # Put your slack token here
+token = 'xoxp-17182186914-20853726230-330371001942-3445e47cc4616d8a459772793f868438'
+#token = 'xoxb-231539362580-UIQ3OqcgBcEg7zRyH5ZYqASS'
+
+# dashboard       : C9Q9L695K
+# decompte        : C9YJQEHGW
+# general         : C0H56QDRA
+# walkingmachine  : G0M1C8ND6
+
+authorized_channels = ['C9Q9L695K','C9YJQEHGW', 'C0H56QDRA', 'G0M1C8ND6']
+
+
+
 
 slack_client = SlackClient(token)
+
+link = '<https://cdn.meme.am/instances/400x/33568413.jpg|That would be great>'
 
 if slack_client.rtm_connect():
     defined_channel = "all"
@@ -18,8 +31,8 @@ if slack_client.rtm_connect():
     while True:
         events = slack_client.rtm_read()
         for event in events:
-            print str(event)
-            print event
+            #print str(event)
+            #print event
             if (
                 'channel' in event and
                 'text' in event and
@@ -28,12 +41,15 @@ if slack_client.rtm_connect():
                 channel = event['channel']
                 text = event['text']
 
-                print str(channel)
-                if defined_channel == "all" or defined_channel == str(channel):
+
+
+                #print str(channel)
+                if channel in authorized_channels:
                     try:
                         os.system("gtts-cli " + '"' + text.lower() + '"' + " -l 'fr' -o /tmp/test.mp3")
                         os.system("mpg123 /tmp/test.mp3")
                         os.system("rm /tmp/test.mp3")
+                        print text.lower()
                     except:
                         os.system("gtts-cli " + '"' + "Le dernier message contient des accents. Erreur"+ '"' + " -l 'fr' -o /tmp/test.mp3")
                         os.system("mpg123 /tmp/test.mp3")
